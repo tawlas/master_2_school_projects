@@ -1,0 +1,167 @@
+{
+    "vars":[
+        {"name":"etat","val":"debut"},
+        {"name":"humeur","val":"ignore"},
+        {"name":"raison","val":"ignore"},
+		{"name":"value","val":"0"}
+    ],
+    "questions":[
+        {
+            "conditions": [ {"name":"humeur","val":"inconnue"} ],
+            "phrase": "Attendez, j'ai une question importante à vous poser. Comment vous sentez-vous ?",
+            "responses": [
+                {
+                    "phrase": ":-)",
+                    "vars": [ {"name":"humeur","val":"positive"} ]
+                },
+                {
+                    "phrase": ":-/",
+                    "vars": [ {"name":"humeur","val":"moyenne"} ]
+                },
+                {
+                    "phrase": ":-(",
+                    "vars": [ {"name":"humeur","val":"negative"} ]
+                }
+            ]
+        },
+        {
+            "conditions": [ {"name":"raison","val":"inconnue"} ],
+            "phrase": "Est-ce que c'est lié à l'activité que nous faisons ensemble ?",
+            "responses": [
+                {
+                    "phrase": "Oui",
+                    "vars": [ {"name":"raison","val":"activite"} ]
+                },
+                {
+                    "phrase": "Non",
+                    "vars": [ {"name":"raison","val":"autre"} ]
+                }
+            ]
+        },
+        {
+            "conditions": [ {"name":"etat","val":"debut"} ],
+            "phrase": "Que voulez-vous faire ?",
+            "responses": [
+                {
+                    "phrase": "Apprendre une table de multiplication",
+                    "vars": [ {"name":"etat","val":"apprendre"} ]
+                },
+                {
+                    "phrase": "Reciter mes tables de multiplication",
+                    "vars": [ {"name":"etat","val":"reciter"} ]
+                },
+                {
+                    "phrase": "Arreter",
+                    "vars": [ {"name":"etat","val":"arrete"} ]
+                }
+            ]
+        },
+		{
+            "conditions": [ {"name":"etat","val":"bonnereponse"} ],
+            "phrase": "Bravo, c'était la bonne réponse !",
+            "responses": [
+                {
+                    "phrase": "Super !",
+                    "vars": [ {"name":"etat","val":"recommencer"} ]
+                }
+            ]
+        },
+		{
+            "conditions": [ {"name":"etat","val":"mauvaisereponse"} ],
+            "phrase": "Mince, ce n'était pas la bonne réponse !",
+            "responses": [
+                {
+                    "phrase": "Dommage !",
+                    "vars": [ {"name":"etat","val":"recommencer"} ]
+                }
+            ]
+        },
+        {
+            "conditions": [ {"name":"etat","val":"recommencer"} ],
+            "phrase": "Voulez-vous que je vous interroge à nouveau ?",
+            "responses": [
+                {
+                    "phrase": "Oui",
+                    "vars": [ {"name":"etat","val":"reciter"} ]
+                },
+                {
+                    "phrase": "Non",
+                    "vars": [ {"name":"etat","val":"debut"} ]
+                }
+            ]
+        },
+        {
+            "conditions": [ {"name":"etat","val":"arrete"} ],
+            "phrase": "Voulez-vous vraiment arrêter ?",
+            "responses": [
+                {
+                    "phrase": "Oui",
+                    "vars": [ {"name":"etat","val":"fin"} ]
+                },
+                {
+                    "phrase": "Non",
+                    "vars": [ {"name":"etat","val":"debut"} ]
+                }
+            ]
+        },
+		{
+            "conditions": [ {"name":"etat","val":"fin"} ],
+            "phrase": "A bientôt !",
+            "responses": [
+                {
+                    "phrase": "Ciao !",
+                    "vars": [ {"name":"etat","val":"kill"} ]
+                },
+                {
+                    "phrase": "Au revoir!",
+                    "vars": [ {"name":"etat","val":"kill"} ]
+                }
+            ]
+        },
+		{
+            "conditions": [ {"name":"etat","val":"apprendre"} ],
+            "phrase": "Voulez-vous réviser une table en particulier ?",
+            "responses": [
+				{
+                    "phrase": "Je veux réviser la table de 6",
+                    "vars": [ 
+								{"name":"etat","val":"table"},{"name":"value","val":"6"}
+							]
+                },
+				{
+                    "phrase": "Je veux réviser la table de 7",
+                    "vars": [ 
+								{"name":"etat","val":"table"},{"name":"value","val":"7"}
+							]
+                },
+				{
+                    "phrase": "Je veux réviser la table de 8",
+                    "vars": [ 
+								{"name":"etat","val":"table"},{"name":"value","val":"8"}
+							]
+                },
+				{
+                    "phrase": "Je veux réviser la table de 9",
+                    "vars": [ 
+								{"name":"etat","val":"table"},{"name":"value","val":"9"}
+							]
+                },
+				{
+                    "phrase": "Choisis-moi une table que je n'ai pas déjà vue.",
+                    "vars": [ {"name":"etat","val":"tableran"} ]
+                }
+            ]
+        },
+		{
+            "conditions": [ {"name":"etat","val":"affiche"} ],
+            "phrase": "Voici votre table",
+            "responses": [
+                {
+                    "phrase": "Ok",
+                    "vars": [ {"name":"etat","val":"debut"} ]
+                }
+            ]
+        }
+		
+    ]
+}

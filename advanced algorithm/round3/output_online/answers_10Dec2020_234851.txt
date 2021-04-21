@@ -1,0 +1,21 @@
+instance_N200_OPT221.inst: optimal: 221, online: 3957, ratio: 17.90497737556561
+instance_N200_OPT286.inst: optimal: 286, online: 8790, ratio: 30.734265734265733
+instance_N200_OPT347.inst: optimal: 347, online: 11789, ratio: 33.97406340057637
+instance_N200_OPT5166.inst: optimal: 5166, online: 6146, ratio: 1.1897018970189701
+instance_N200_OPT5266.inst: optimal: 5266, online: 5857, ratio: 1.1122293961260918
+instance_N200_OPT5298.inst: optimal: 5298, online: 5946, ratio: 1.1223103057757644
+instance_N250_OPT134.inst: optimal: 134, online: 3922, ratio: 29.26865671641791
+instance_N250_OPT4262.inst: optimal: 4262, online: 7918, ratio: 1.8578132332238386
+instance_N300_OPT246.inst: optimal: 246, online: 11447, ratio: 46.53252032520325
+instance_N300_OPT337.inst: optimal: 337, online: 13755, ratio: 40.8160237388724
+instance_N300_OPT394.inst: optimal: 394, online: 11988, ratio: 30.426395939086294
+instance_N300_OPT5645.inst: optimal: 5645, online: 7787, ratio: 1.379450841452613
+instance_N300_OPT6260.inst: optimal: 6260, online: 14058, ratio: 2.2456869009584666
+instance_N300_OPT7236.inst: optimal: 7236, online: 8945, ratio: 1.236180210060807
+instance_N350_OPT277.inst: optimal: 277, online: 21227, ratio: 76.63176895306859
+instance_N350_OPT5552.inst: optimal: 5552, online: 7687, ratio: 1.3845461095100864
+instance_N400_OPT3683.inst: optimal: 3683, online: 7820, ratio: 2.123269074124355
+instance_N400_OPT3717.inst: optimal: 3717, online: 9122, ratio: 2.4541296744686574
+instance_N400_OPT377.inst: optimal: 377, online: 11977, ratio: 31.76923076923077
+instance_N400_OPT398.inst: optimal: 398, online: 23578, ratio: 59.24120603015076
+score (moyenne des ratios) :20.670221331257867

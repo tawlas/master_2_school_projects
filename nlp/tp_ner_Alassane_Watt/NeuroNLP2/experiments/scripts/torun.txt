@@ -1,0 +1,34 @@
+-- ./scripts/run_ner_w2v_emea.sh
+-- ./scripts/run_ner_w2v_medline.sh
+
+
+---All
+ft_p_small
+w2v_p_small
+ft_emea
+
+w2v_emea skipped it
+
+ft_medline
+w2v_medline skipped it
+ft_p
+w2v_p
+
+ft_m-fra4
+ft_p_small-emea
+
+
+-- En cours
+
+
+-- traité
+ft_p_small
+w2v_p_small ok
+ft_emea
+ft_medline
+ft_p
+w2v_p
+ft_m-fra4
+ft_p_small-emea
+w2v_emea
+w2v_medline

@@ -1,0 +1,282 @@
+@prefix : <http://www.yb.org/ontologies/td1.owl/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@base <http://www.yb.org/ontologies/td1.owl/> .
+
+<http://www.yb.org/ontologies/td1.owl/> rdf:type owl:Ontology ;
+                                         rdfs:comment "Cette ontologie est utilisée dans l'exercice 1 du TD1 du cours Connaissances et Raisonnements." .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.yb.org/ontologies/td1.owl/aPourAmi
+:aPourAmi rdf:type owl:ObjectProperty ;
+          owl:inverseOf :estAmiDe ;
+          rdfs:domain :Personne ;
+          rdfs:range :Personne .
+
+
+###  http://www.yb.org/ontologies/td1.owl/estAmiDe
+:estAmiDe rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2002/07/owl#Thing
+owl:Thing rdf:type owl:Class .
+
+
+###  http://www.yb.org/ontologies/td1.owl/AAmiHeureuxEtAmiEtudiant
+:AAmiHeureuxEtAmiEtudiant rdf:type owl:Class ;
+                          owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty :aPourAmi ;
+                                                                       owl:someValuesFrom :Etudiant
+                                                                     ]
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty :aPourAmi ;
+                                                                       owl:someValuesFrom :Heureux
+                                                                     ]
+                                                                   ) ;
+                                                rdf:type owl:Class
+                                              ] .
+
+
+###  http://www.yb.org/ontologies/td1.owl/AAmiHeureuxEtEtudiant
+:AAmiHeureuxEtEtudiant rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                             owl:onProperty :aPourAmi ;
+                                             owl:someValuesFrom [ owl:intersectionOf ( :Etudiant
+                                                                                       :Heureux
+                                                                                     ) ;
+                                                                  rdf:type owl:Class
+                                                                ]
+                                           ] ;
+                       rdfs:subClassOf owl:Thing .
+
+
+###  http://www.yb.org/ontologies/td1.owl/AAmiHeureuxOuAmiEtudiant
+:AAmiHeureuxOuAmiEtudiant rdf:type owl:Class ;
+                          owl:equivalentClass [ rdf:type owl:Class ;
+                                                owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :aPourAmi ;
+                                                                owl:someValuesFrom :Etudiant
+                                                              ]
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :aPourAmi ;
+                                                                owl:someValuesFrom :Heureux
+                                                              ]
+                                                            )
+                                              ] ;
+                          rdfs:subClassOf owl:Thing .
+
+
+###  http://www.yb.org/ontologies/td1.owl/AAmiHeureuxOuEtudiant
+:AAmiHeureuxOuEtudiant rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                             owl:onProperty :aPourAmi ;
+                                             owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                  owl:unionOf ( :Etudiant
+                                                                                :Heureux
+                                                                              )
+                                                                ]
+                                           ] .
+
+
+###  http://www.yb.org/ontologies/td1.owl/Etudiant
+:Etudiant rdf:type owl:Class ;
+          rdfs:subClassOf :Personne ;
+          owl:disjointWith :Professeur .
+
+
+###  http://www.yb.org/ontologies/td1.owl/ExempleNégation
+:ExempleNégation rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Class ;
+                                       owl:complementOf [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :aPourAmi ;
+                                                          owl:someValuesFrom [ owl:intersectionOf ( :Etudiant
+                                                                                                    :Heureux
+                                                                                                  ) ;
+                                                                               rdf:type owl:Class
+                                                                             ]
+                                                        ]
+                                     ] .
+
+
+###  http://www.yb.org/ontologies/td1.owl/Heureux
+:Heureux rdf:type owl:Class .
+
+
+###  http://www.yb.org/ontologies/td1.owl/Personne
+:Personne rdf:type owl:Class ;
+          rdfs:subClassOf owl:Thing .
+
+
+###  http://www.yb.org/ontologies/td1.owl/Professeur
+:Professeur rdf:type owl:Class ;
+            rdfs:subClassOf :Personne .
+
+
+###  http://www.yb.org/ontologies/td1.owl/TousAmisheureuxEtAmisEtudiant
+:TousAmisheureuxEtAmisEtudiant rdf:type owl:Class ;
+                               owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty :aPourAmi ;
+                                                                            owl:allValuesFrom :Etudiant
+                                                                          ]
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty :aPourAmi ;
+                                                                            owl:allValuesFrom :Heureux
+                                                                          ]
+                                                                        ) ;
+                                                     rdf:type owl:Class
+                                                   ] .
+
+
+###  http://www.yb.org/ontologies/td1.owl/TousAmisheureuxEtEtudiant
+:TousAmisheureuxEtEtudiant rdf:type owl:Class ;
+                           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :aPourAmi ;
+                                                 owl:allValuesFrom [ owl:intersectionOf ( :Etudiant
+                                                                                          :Heureux
+                                                                                        ) ;
+                                                                     rdf:type owl:Class
+                                                                   ]
+                                               ] .
+
+
+###  http://www.yb.org/ontologies/td1.owl/TousAmisheureuxOuAmisEtudiant
+:TousAmisheureuxOuAmisEtudiant rdf:type owl:Class ;
+                               owl:equivalentClass [ rdf:type owl:Class ;
+                                                     owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty :aPourAmi ;
+                                                                     owl:allValuesFrom :Etudiant
+                                                                   ]
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty :aPourAmi ;
+                                                                     owl:allValuesFrom :Heureux
+                                                                   ]
+                                                                 )
+                                                   ] .
+
+
+###  http://www.yb.org/ontologies/td1.owl/TousAmisheureuxOuEtudiant
+:TousAmisheureuxOuEtudiant rdf:type owl:Class ;
+                           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :aPourAmi ;
+                                                 owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                     owl:unionOf ( :Etudiant
+                                                                                   :Heureux
+                                                                                 )
+                                                                   ]
+                                               ] ;
+                           rdfs:subClassOf owl:Thing .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.yb.org/ontologies/td1.owl/arthur
+:arthur rdf:type owl:NamedIndividual ,
+                 owl:Thing ,
+                 :Etudiant ,
+                 :Heureux .
+
+
+###  http://www.yb.org/ontologies/td1.owl/billy
+:billy rdf:type owl:NamedIndividual ,
+                owl:Thing ,
+                [ rdf:type owl:Restriction ;
+                  owl:onProperty :aPourAmi ;
+                  owl:qualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                  owl:onClass :Personne
+                ] .
+
+
+###  http://www.yb.org/ontologies/td1.owl/bob
+:bob rdf:type owl:NamedIndividual ,
+              owl:Thing ,
+              :Etudiant ,
+              [ rdf:type owl:Class ;
+                owl:complementOf :Heureux
+              ] .
+
+
+###  http://www.yb.org/ontologies/td1.owl/charlie
+:charlie rdf:type owl:NamedIndividual ,
+                  owl:Thing ,
+                  :Heureux ,
+                  :Professeur .
+
+
+###  http://www.yb.org/ontologies/td1.owl/diane
+:diane rdf:type owl:NamedIndividual ,
+                owl:Thing ,
+                :Professeur ,
+                [ rdf:type owl:Class ;
+                  owl:complementOf :Heureux
+                ] .
+
+
+###  http://www.yb.org/ontologies/td1.owl/fred
+:fred rdf:type owl:NamedIndividual ,
+               owl:Thing ,
+               [ rdf:type owl:Restriction ;
+                 owl:onProperty :aPourAmi ;
+                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                 owl:onClass :Personne
+               ] ;
+      :aPourAmi :jim ,
+                :jules .
+
+
+###  http://www.yb.org/ontologies/td1.owl/jim
+:jim rdf:type owl:NamedIndividual ,
+              owl:Thing .
+
+
+###  http://www.yb.org/ontologies/td1.owl/jules
+:jules rdf:type owl:NamedIndividual ,
+                owl:Thing .
+
+
+###  http://www.yb.org/ontologies/td1.owl/patricia
+:patricia rdf:type owl:NamedIndividual ,
+                   owl:Thing ;
+          :aPourAmi :arthur .
+
+
+###  http://www.yb.org/ontologies/td1.owl/quentin
+:quentin rdf:type owl:NamedIndividual ,
+                  owl:Thing ;
+         :aPourAmi :bob ,
+                   :charlie .
+
+
+###  http://www.yb.org/ontologies/td1.owl/richard
+:richard rdf:type owl:NamedIndividual ,
+                  owl:Thing ;
+         :aPourAmi :charlie .
+
+
+###  http://www.yb.org/ontologies/td1.owl/roberte
+:roberte rdf:type owl:NamedIndividual ,
+                  owl:Thing ;
+         :aPourAmi :bob .
+
+
+###  http://www.yb.org/ontologies/td1.owl/william
+:william rdf:type owl:NamedIndividual ,
+                  [ rdf:type owl:Restriction ;
+                    owl:onProperty :aPourAmi ;
+                    owl:cardinality "0"^^xsd:nonNegativeInteger
+                  ] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

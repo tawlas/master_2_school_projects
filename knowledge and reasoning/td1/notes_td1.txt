@@ -1,0 +1,33 @@
+
+
+
+Exo1
+Explication des principales inférences
+
+Arthur:
+estAmiDe Patricia:
+Comme Patricia aPourAmi Arthur et que aPourAmi et que estAmiDe
+
+Fred:
+Personne:
+Comme Fred aPourAmi Jules et que le domaine de la relation aPourAmi est Personne alors le raisonneur Pellet infère que Fred est une Personne.
+
+Patricia:
+AAmiHeureuxEtEtudiant:
+AAmiHeureuxEtEtudiant  est equivalent à avoir un ami qui soit à la fois de la classe Etudiant et Heureux. 
+Or Patricia est un Ami d'Arthur et Arthur est une instance de la classe Etudiant et de la classe Heureux, ainsi forcément Patricia est du type AAmiHeureuxEtEtudiant
+
+
+Exo 2
+
+q7) Ajouté plus de 5 films pour inférer et un acteur ayant joué dans plus 5 film pour inferer des individus dans Acteur Demandé
+Ajouté au moins un Acteur  par film pour inférer des Spectateurs
+Ajouté que des acteurs hommes pour inférer un film sexiste.
+
+8)  On crée une classe Genre et puis on crée des instances de genre qu'on associe par la suite à "Genre".
+
+9) Pour intégrer les séries, un moyen est de créer une nouvelle propriété pour film qui aura deux valeurs série ou non-série
+
+"créer une classe Série qui est une sous classe d'un classe plus générale contant Série et Film. Tout ce qui est valide pour série va être valide pour film."
+
+

@@ -1,0 +1,432 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.exemple.org/TD2"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.exemple.org/TD2">
+    <Prefix name="" IRI="http://www.exemple.org/TD2#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="swrl" IRI="http://www.w3.org/2003/11/swrl#"/>
+    <Prefix name="swrla" IRI="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"/>
+    <Prefix name="swrlb" IRI="http://www.w3.org/2003/11/swrlb#"/>
+    <Prefix name="temporal" IRI="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#"/>
+    <Declaration>
+        <Class IRI="#AgileDomain"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Iteration"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ParallelProcess"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Process"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProcessDomain"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SequentialProcess"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Task"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasFinishProcess"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasLongestProcess"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasNextProcess"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasStartProcess"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasSubProcess"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasSubsequentProcess"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isFinishProcessOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isLongestProcessOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isNextProcessOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isStartProcessOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isSubProcessOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isSubequentProcessOf"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#durationFromStart"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#durationInWorkHours"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#slack"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#BuildStoryCreateCase"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#BuildStoryLogin"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#InstallDevelopmentEnvironment"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Iteration1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Iteration2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#WriteStoryEscalateCase"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#WriteStoryPerformanceReview"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#WriteStorySearch"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="swrla:isRuleEnabled"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#Iteration"/>
+        <Class IRI="#AgileDomain"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Iteration"/>
+        <Class IRI="#Process"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ParallelProcess"/>
+        <Class IRI="#Process"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Process"/>
+        <Class IRI="#ProcessDomain"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SequentialProcess"/>
+        <Class IRI="#Process"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Task"/>
+        <Class IRI="#AgileDomain"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Task"/>
+        <Class IRI="#Process"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="#Task"/>
+        <NamedIndividual IRI="#BuildStoryCreateCase"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Task"/>
+        <NamedIndividual IRI="#BuildStoryLogin"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Task"/>
+        <NamedIndividual IRI="#InstallDevelopmentEnvironment"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Iteration"/>
+        <NamedIndividual IRI="#Iteration1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#SequentialProcess"/>
+        <NamedIndividual IRI="#Iteration1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Iteration"/>
+        <NamedIndividual IRI="#Iteration2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ParallelProcess"/>
+        <NamedIndividual IRI="#Iteration2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Task"/>
+        <NamedIndividual IRI="#WriteStoryEscalateCase"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Task"/>
+        <NamedIndividual IRI="#WriteStoryPerformanceReview"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Task"/>
+        <NamedIndividual IRI="#WriteStorySearch"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasNextProcess"/>
+        <NamedIndividual IRI="#BuildStoryLogin"/>
+        <NamedIndividual IRI="#BuildStoryCreateCase"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasNextProcess"/>
+        <NamedIndividual IRI="#InstallDevelopmentEnvironment"/>
+        <NamedIndividual IRI="#BuildStoryLogin"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasFinishProcess"/>
+        <NamedIndividual IRI="#Iteration1"/>
+        <NamedIndividual IRI="#BuildStoryCreateCase"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasStartProcess"/>
+        <NamedIndividual IRI="#Iteration1"/>
+        <NamedIndividual IRI="#InstallDevelopmentEnvironment"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasSubProcess"/>
+        <NamedIndividual IRI="#Iteration1"/>
+        <NamedIndividual IRI="#BuildStoryLogin"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasLongestProcess"/>
+        <NamedIndividual IRI="#Iteration2"/>
+        <NamedIndividual IRI="#WriteStoryPerformanceReview"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasSubProcess"/>
+        <NamedIndividual IRI="#Iteration2"/>
+        <NamedIndividual IRI="#WriteStoryEscalateCase"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasSubProcess"/>
+        <NamedIndividual IRI="#Iteration2"/>
+        <NamedIndividual IRI="#WriteStoryPerformanceReview"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasSubProcess"/>
+        <NamedIndividual IRI="#Iteration2"/>
+        <NamedIndividual IRI="#WriteStorySearch"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#durationInWorkHours"/>
+        <NamedIndividual IRI="#BuildStoryCreateCase"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">14.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#durationInWorkHours"/>
+        <NamedIndividual IRI="#BuildStoryLogin"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">16.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#durationInWorkHours"/>
+        <NamedIndividual IRI="#InstallDevelopmentEnvironment"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">8.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#durationFromStart"/>
+        <NamedIndividual IRI="#WriteStoryEscalateCase"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">16</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#durationFromStart"/>
+        <NamedIndividual IRI="#WriteStoryPerformanceReview"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">42.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#durationFromStart"/>
+        <NamedIndividual IRI="#WriteStorySearch"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">12</Literal>
+    </DataPropertyAssertion>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasFinishProcess"/>
+        <ObjectProperty IRI="#hasSubProcess"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasLongestProcess"/>
+        <ObjectProperty IRI="#hasSubProcess"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasNextProcess"/>
+        <ObjectProperty IRI="#hasSubsequentProcess"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasStartProcess"/>
+        <ObjectProperty IRI="#hasSubProcess"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isFinishProcessOf"/>
+        <ObjectProperty IRI="#isSubProcessOf"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isLongestProcessOf"/>
+        <ObjectProperty IRI="#isSubProcessOf"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isNextProcessOf"/>
+        <ObjectProperty IRI="#isSubequentProcessOf"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isStartProcessOf"/>
+        <ObjectProperty IRI="#isSubProcessOf"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasFinishProcess"/>
+        <ObjectProperty IRI="#isFinishProcessOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasLongestProcess"/>
+        <ObjectProperty IRI="#isLongestProcessOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasNextProcess"/>
+        <ObjectProperty IRI="#isNextProcessOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasStartProcess"/>
+        <ObjectProperty IRI="#isStartProcessOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasSubProcess"/>
+        <ObjectProperty IRI="#isSubProcessOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasSubsequentProcess"/>
+        <ObjectProperty IRI="#isSubequentProcessOf"/>
+    </InverseObjectProperties>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasFinishProcess"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasNextProcess"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasStartProcess"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#isFinishProcessOf"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#isLongestProcessOf"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#isNextProcessOf"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#isStartProcessOf"/>
+    </FunctionalObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#hasSubProcess"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#hasSubsequentProcess"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#isSubequentProcessOf"/>
+    </TransitiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasSubProcess"/>
+        <Class IRI="#Process"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasSubsequentProcess"/>
+        <Class IRI="#Process"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasSubProcess"/>
+        <Class IRI="#Process"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasSubsequentProcess"/>
+        <Class IRI="#Process"/>
+    </ObjectPropertyRange>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#durationFromStart"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#durationInWorkHours"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#slack"/>
+    </FunctionalDataProperty>
+    <DataPropertyDomain>
+        <DataProperty IRI="#durationFromStart"/>
+        <Class IRI="#Process"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#durationInWorkHours"/>
+        <Class IRI="#Process"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#slack"/>
+        <Class IRI="#Process"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#durationFromStart"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#durationInWorkHours"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#slack"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <DLSafeRule>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="swrla:isRuleEnabled"/>
+            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal></Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal>S1</Literal>
+        </Annotation>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#SequentialProcess"/>
+                <Variable IRI="#sp"/>
+            </ClassAtom>
+            <DataPropertyAtom>
+                <DataProperty IRI="#durationInWorkHours"/>
+                <Variable IRI="#stp"/>
+                <Variable IRI="#spd"/>
+            </DataPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasStartProcess"/>
+                <Variable IRI="#sp"/>
+                <Variable IRI="#stp"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <DataPropertyAtom>
+                <DataProperty IRI="#durationFromStart"/>
+                <Variable IRI="#stp"/>
+                <Variable IRI="#spd"/>
+            </DataPropertyAtom>
+        </Head>
+    </DLSafeRule>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

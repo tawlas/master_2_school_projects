@@ -1,0 +1,517 @@
+@prefix : <http://www.exemple.org/TD2#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrla: <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix temporal: <http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#> .
+@base <http://www.exemple.org/TD2> .
+
+<http://www.exemple.org/TD2> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+swrla:isRuleEnabled rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.exemple.org/TD2#hasFinishProcess
+:hasFinishProcess rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasSubProcess ;
+                  owl:inverseOf :isFinishProcessOf ;
+                  rdf:type owl:FunctionalProperty .
+
+
+###  http://www.exemple.org/TD2#hasLongestProcess
+:hasLongestProcess rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :hasSubProcess ;
+                   owl:inverseOf :isLongestProcessOf .
+
+
+###  http://www.exemple.org/TD2#hasNextProcess
+:hasNextProcess rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasSubsequentProcess ;
+                owl:inverseOf :isNextProcessOf ;
+                rdf:type owl:FunctionalProperty .
+
+
+###  http://www.exemple.org/TD2#hasStartProcess
+:hasStartProcess rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasSubProcess ;
+                 owl:inverseOf :isStartProcessOf ;
+                 rdf:type owl:FunctionalProperty .
+
+
+###  http://www.exemple.org/TD2#hasSubProcess
+:hasSubProcess rdf:type owl:ObjectProperty ;
+               owl:inverseOf :isSubProcessOf ;
+               rdf:type owl:TransitiveProperty ;
+               rdfs:domain :Process ;
+               rdfs:range :Process .
+
+
+###  http://www.exemple.org/TD2#hasSubsequentProcess
+:hasSubsequentProcess rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :isSubequentProcessOf ;
+                      rdf:type owl:TransitiveProperty ;
+                      rdfs:domain :Process ;
+                      rdfs:range :Process .
+
+
+###  http://www.exemple.org/TD2#isFinishProcessOf
+:isFinishProcessOf rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :isSubProcessOf ;
+                   rdf:type owl:FunctionalProperty .
+
+
+###  http://www.exemple.org/TD2#isLongestProcessOf
+:isLongestProcessOf rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :isSubProcessOf ;
+                    rdf:type owl:FunctionalProperty .
+
+
+###  http://www.exemple.org/TD2#isNextProcessOf
+:isNextProcessOf rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :isSubequentProcessOf ;
+                 rdf:type owl:FunctionalProperty .
+
+
+###  http://www.exemple.org/TD2#isStartProcessOf
+:isStartProcessOf rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :isSubProcessOf ;
+                  rdf:type owl:FunctionalProperty .
+
+
+###  http://www.exemple.org/TD2#isSubProcessOf
+:isSubProcessOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.exemple.org/TD2#isSubequentProcessOf
+:isSubequentProcessOf rdf:type owl:ObjectProperty ,
+                               owl:TransitiveProperty .
+
+
+###  http://www.exemple.org/TD2#manage
+:manage rdf:type owl:ObjectProperty ;
+        rdfs:domain :ProjectManager ;
+        rdfs:range :Process .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.exemple.org/TD2#durationFromStart
+:durationFromStart rdf:type owl:DatatypeProperty ,
+                            owl:FunctionalProperty ;
+                   rdfs:domain :Process ;
+                   rdfs:range xsd:decimal .
+
+
+###  http://www.exemple.org/TD2#durationInWorkHours
+:durationInWorkHours rdf:type owl:DatatypeProperty ,
+                              owl:FunctionalProperty ;
+                     rdfs:domain :Process ;
+                     rdfs:range xsd:decimal .
+
+
+###  http://www.exemple.org/TD2#slack
+:slack rdf:type owl:DatatypeProperty ,
+                owl:FunctionalProperty ;
+       rdfs:domain :Process ;
+       rdfs:range xsd:decimal .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.exemple.org/TD2#AgileDomain
+:AgileDomain rdf:type owl:Class .
+
+
+###  http://www.exemple.org/TD2#BehindScheduleProcess
+:BehindScheduleProcess rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                             owl:onProperty :slack ;
+                                             owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                  owl:onDatatype xsd:decimal ;
+                                                                  owl:withRestrictions ( [ xsd:maxExclusive 0
+                                                                                         ]
+                                                                                       )
+                                                                ]
+                                           ] ;
+                       rdfs:subClassOf :Process .
+
+
+###  http://www.exemple.org/TD2#Iteration
+:Iteration rdf:type owl:Class ;
+           rdfs:subClassOf :AgileDomain ,
+                           :Process .
+
+
+###  http://www.exemple.org/TD2#LoopProcess
+:LoopProcess rdf:type owl:Class ;
+             rdfs:subClassOf :SequentialProcess .
+
+
+###  http://www.exemple.org/TD2#ParallelProcess
+:ParallelProcess rdf:type owl:Class ;
+                 rdfs:subClassOf :Process .
+
+
+###  http://www.exemple.org/TD2#Process
+:Process rdf:type owl:Class ;
+         rdfs:subClassOf :ProcessDomain .
+
+
+###  http://www.exemple.org/TD2#ProcessDomain
+:ProcessDomain rdf:type owl:Class .
+
+
+###  http://www.exemple.org/TD2#ProjectManager
+:ProjectManager rdf:type owl:Class .
+
+
+###  http://www.exemple.org/TD2#SequentialProcess
+:SequentialProcess rdf:type owl:Class ;
+                   rdfs:subClassOf :Process .
+
+
+###  http://www.exemple.org/TD2#Task
+:Task rdf:type owl:Class ;
+      rdfs:subClassOf :AgileDomain ,
+                      :Process .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.exemple.org/TD2#BuildStoryCreateCase
+:BuildStoryCreateCase rdf:type owl:NamedIndividual ,
+                               :Task ;
+                      :durationInWorkHours 14.0 .
+
+
+###  http://www.exemple.org/TD2#BuildStoryLogin
+:BuildStoryLogin rdf:type owl:NamedIndividual ,
+                          :Task ;
+                 :hasNextProcess :BuildStoryCreateCase ;
+                 :durationInWorkHours 16.0 .
+
+
+###  http://www.exemple.org/TD2#InstallDevelopmentEnvironment
+:InstallDevelopmentEnvironment rdf:type owl:NamedIndividual ,
+                                        :Task ;
+                               :hasNextProcess :BuildStoryLogin ;
+                               :durationInWorkHours 8.0 .
+
+
+###  http://www.exemple.org/TD2#Iteration1
+:Iteration1 rdf:type owl:NamedIndividual ,
+                     :Iteration ,
+                     :SequentialProcess ;
+            :hasFinishProcess :BuildStoryCreateCase ;
+            :hasStartProcess :InstallDevelopmentEnvironment ;
+            :hasSubProcess :BuildStoryLogin .
+
+
+###  http://www.exemple.org/TD2#Iteration2
+:Iteration2 rdf:type owl:NamedIndividual ,
+                     :Iteration ,
+                     :ParallelProcess ;
+            :hasLongestProcess :WriteStoryPerformanceReview ;
+            :hasSubProcess :WriteStoryEscalateCase ,
+                           :WriteStoryPerformanceReview ,
+                           :WriteStorySearch .
+
+
+###  http://www.exemple.org/TD2#WriteStoryEscalateCase
+:WriteStoryEscalateCase rdf:type owl:NamedIndividual ,
+                                 :Task ;
+                        :durationFromStart 16 .
+
+
+###  http://www.exemple.org/TD2#WriteStoryPerformanceReview
+:WriteStoryPerformanceReview rdf:type owl:NamedIndividual ,
+                                      :Task ;
+                             :durationFromStart 42.0 .
+
+
+###  http://www.exemple.org/TD2#WriteStorySearch
+:WriteStorySearch rdf:type owl:NamedIndividual ,
+                           :Task ;
+                  :durationFromStart 12 .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+<urn:swrl:var#p> rdf:type swrl:Variable .
+
+<urn:swrl:var#d> rdf:type swrl:Variable .
+
+<urn:swrl:var#diff> rdf:type swrl:Variable .
+
+<urn:swrl:var#pp> rdf:type swrl:Variable .
+
+<urn:swrl:var#sp> rdf:type swrl:Variable .
+
+<urn:swrl:var#m> rdf:type swrl:Variable .
+
+<urn:swrl:var#sp1> rdf:type swrl:Variable .
+
+<urn:swrl:var#sp2> rdf:type swrl:Variable .
+
+<urn:swrl:var#d1> rdf:type swrl:Variable .
+
+<urn:swrl:var#d2> rdf:type swrl:Variable .
+
+<urn:swrl:var#sum> rdf:type swrl:Variable .
+
+<urn:swrl:var#stp> rdf:type swrl:Variable .
+
+<urn:swrl:var#spd> rdf:type swrl:Variable .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate :ParallelProcess ;
+                           swrl:argument1 <urn:swrl:var#pp>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                      swrl:propertyPredicate :hasLongestProcess ;
+                                      swrl:argument1 <urn:swrl:var#pp> ;
+                                      swrl:argument2 <urn:swrl:var#sp>
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate :durationFromStart ;
+                                                 swrl:argument1 <urn:swrl:var#sp> ;
+                                                 swrl:argument2 <urn:swrl:var#d>
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate :durationFromStart ;
+                           swrl:argument1 <urn:swrl:var#pp> ;
+                           swrl:argument2 <urn:swrl:var#d>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate :ProjectManager ;
+                           swrl:argument1 <urn:swrl:var#m>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                      swrl:propertyPredicate :manage ;
+                                      swrl:argument1 <urn:swrl:var#m> ;
+                                      swrl:argument2 <urn:swrl:var#p>
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                 swrl:propertyPredicate :hasSubProcess ;
+                                                 swrl:argument1 <urn:swrl:var#p> ;
+                                                 swrl:argument2 <urn:swrl:var#sp>
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate :manage ;
+                           swrl:argument1 <urn:swrl:var#m> ;
+                           swrl:argument2 <urn:swrl:var#sp>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate :SequentialProcess ;
+                           swrl:argument1 <urn:swrl:var#p>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                      swrl:propertyPredicate :hasSubProcess ;
+                                      swrl:argument1 <urn:swrl:var#p> ;
+                                      swrl:argument2 <urn:swrl:var#sp>
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                 swrl:propertyPredicate :hasSubsequentProcess ;
+                                                 swrl:argument1 <urn:swrl:var#sp> ;
+                                                 swrl:argument2 <urn:swrl:var#sp>
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate :LoopProcess ;
+                           swrl:argument1 <urn:swrl:var#p>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate :SequentialProcess ;
+                           swrl:argument1 <urn:swrl:var#sp>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                      swrl:propertyPredicate :hasSubProcess ;
+                                      swrl:argument1 <urn:swrl:var#sp> ;
+                                      swrl:argument2 <urn:swrl:var#sp1>
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                 swrl:propertyPredicate :hasSubProcess ;
+                                                 swrl:argument1 <urn:swrl:var#sp> ;
+                                                 swrl:argument2 <urn:swrl:var#sp2>
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                            swrl:propertyPredicate :hasNextProcess ;
+                                                            swrl:argument1 <urn:swrl:var#sp1> ;
+                                                            swrl:argument2 <urn:swrl:var#sp2>
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                       swrl:propertyPredicate :durationFromStart ;
+                                                                       swrl:argument1 <urn:swrl:var#sp1> ;
+                                                                       swrl:argument2 <urn:swrl:var#d1>
+                                                                     ] ;
+                                                           rdf:rest [ rdf:type swrl:AtomList ;
+                                                                      rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                  swrl:propertyPredicate :durationInWorkHours ;
+                                                                                  swrl:argument1 <urn:swrl:var#sp2> ;
+                                                                                  swrl:argument2 <urn:swrl:var#d2>
+                                                                                ] ;
+                                                                      rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                 rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                                                             swrl:builtin swrlb:add ;
+                                                                                             swrl:arguments ( <urn:swrl:var#sum>
+                                                                                                              <urn:swrl:var#d1>
+                                                                                                              <urn:swrl:var#d2>
+                                                                                                            )
+                                                                                           ] ;
+                                                                                 rdf:rest rdf:nil
+                                                                               ]
+                                                                    ]
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate :durationFromStart ;
+                           swrl:argument1 <urn:swrl:var#sp2> ;
+                           swrl:argument2 <urn:swrl:var#sum>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate :Iteration ;
+                           swrl:argument1 <urn:swrl:var#p>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate :durationFromStart ;
+                                      swrl:argument1 <urn:swrl:var#p> ;
+                                      swrl:argument2 <urn:swrl:var#d>
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                 swrl:builtin swrlb:subtract ;
+                                                 swrl:arguments [ rdf:type rdf:List ;
+                                                                  rdf:first <urn:swrl:var#diff> ;
+                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                             rdf:first 40 ;
+                                                                             rdf:rest ( <urn:swrl:var#d>
+                                                                                      )
+                                                                           ]
+                                                                ]
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate :slack ;
+                           swrl:argument1 <urn:swrl:var#p> ;
+                           swrl:argument2 <urn:swrl:var#diff>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "S1"^^xsd:string ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate :SequentialProcess ;
+                           swrl:argument1 <urn:swrl:var#sp>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate :durationInWorkHours ;
+                                      swrl:argument1 <urn:swrl:var#stp> ;
+                                      swrl:argument2 <urn:swrl:var#spd>
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                 swrl:propertyPredicate :hasStartProcess ;
+                                                 swrl:argument1 <urn:swrl:var#sp> ;
+                                                 swrl:argument2 <urn:swrl:var#stp>
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate :durationFromStart ;
+                           swrl:argument1 <urn:swrl:var#stp> ;
+                           swrl:argument2 <urn:swrl:var#spd>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
